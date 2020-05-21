@@ -18,6 +18,8 @@ Shader "UI/Default-ExtraTexture_Luma"
 
 		_Threshold("Threshold", Float) = 0.0
 		_Blend("Blend", Float) = 0.0
+		[MaterialToggle] _InvLuma("Invert Luma", Float) = 0
+
 
 	}
 
@@ -73,6 +75,7 @@ Shader "UI/Default-ExtraTexture_Luma"
 			fixed4 _Color;
 			float _Threshold;
 			float _Blend;
+			float _InvLuma;
 
 			v2f vert(appdata_t IN)
 			{
@@ -92,16 +95,25 @@ Shader "UI/Default-ExtraTexture_Luma"
 
 			fixed4 frag(v2f IN) : SV_Target
 			{
-				half4 color = tex2D(_MainTex, IN.texcoord) * IN.color;
-				float luma = Luminance(color);
-				if(step(_Threshold, luma)) color.a = _Blend;			
+				half4 color = tex2D(_MainTex, IN.texcoord) * IN.color;				
 				color *= tex2D(_OverlayTex, IN.texcoord);
 				clip (color.a - 0.01);	
-				
-				//Invert Color
-				//color.rgb = (1 - color);
-				//color.rgb *= color.a;
-	
+				float luma;
+
+				if (_InvLuma >= 1)
+				{
+					//Invert Color
+					half4 lumaCol = color;
+					lumaCol.rgb = (1 - color);
+					lumaCol.rgb *= color.a;
+					luma = Luminance(lumaCol);
+				}
+				else
+				{
+					luma = Luminance(color);
+				}
+				if (step(_Threshold, luma)) color.a = _Blend;
+
 				return color;
 			}
 		ENDCG

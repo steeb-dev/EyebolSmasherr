@@ -23,7 +23,7 @@ public class ClipEditorUI : MonoBehaviour
     public Slider _LumaKeySlider;
     public Slider _LumaBlendSlider;
     public Slider _ColorMaskSlider;
-
+    public Toggle _InvertLumaToggle;
 
     bool _IgnoreUpdateEvent = false;
 
@@ -62,6 +62,8 @@ public class ClipEditorUI : MonoBehaviour
         _ColorMaskSlider.value = _TargetClipPad._ClipData._ColorMask;
         _LumaBlendSlider.value = _TargetClipPad._ClipData._LumaBlend;
         _LumaKeySlider.value = _TargetClipPad._ClipData._LumaKey;
+        _InvertLumaToggle.isOn = _TargetClipPad._ClipData._InvertLuma;
+
         RefreshModeToggleGroup();
         _IgnoreUpdateEvent = false;
     }
@@ -127,5 +129,11 @@ public class ClipEditorUI : MonoBehaviour
     {
         if (_TargetClipPad != null && !_IgnoreUpdateEvent)
             _TargetClipPad._ClipData._LumaBlend = blendVal;
+    }
+
+    public void ToggleInvertLuma()
+    {
+        if (_TargetClipPad != null && !_IgnoreUpdateEvent)
+            _TargetClipPad._ClipData._InvertLuma = _InvertLumaToggle.isOn;
     }
 }

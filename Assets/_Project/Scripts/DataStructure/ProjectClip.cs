@@ -16,6 +16,8 @@ public class ProjectClip
     public float _ColorMask;
     public float _LumaKey;
     public float _LumaBlend;
+    public bool _InvertLuma;
+
     public string FileName
     {
         get

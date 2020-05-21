@@ -15,10 +15,12 @@ public class VideoPlayerController : MonoBehaviour
 
     AppManager _Manager;
     public RenderHeads.Media.AVProVideo.DisplayUGUI[] VideoProjections;
+
     Color _CurrentColor = Color.white;
     float _CurrentColorMask;
     float _CurrentLumaKey;
     float _CurrentLumaBlend;
+    bool _CurrentInvertLuma;
 
     private void Start()
     {
@@ -133,6 +135,11 @@ public class VideoPlayerController : MonoBehaviour
         {
             UpdateLumaKey();
         }
+
+        if (_CurrentInvertLuma != _CurrentClipPad._ClipData._InvertLuma)
+        {
+            UpdateInvertLuma();
+        }
     }
 
     void HandleClipLoopMode()
@@ -221,6 +228,17 @@ public class VideoPlayerController : MonoBehaviour
         }
     }
 
+    public void UpdateInvertLuma()
+    {
+        _CurrentInvertLuma = _CurrentClipPad._ClipData._InvertLuma;
+        foreach (DisplayUGUI ugui in VideoProjections)
+        {
+            if (_CurrentInvertLuma)
+                ugui.material.SetFloat("_InvLuma", 1.0f);
+            else
+                ugui.material.SetFloat("_InvLuma", 0f);
+        }
+    }
 
     public void RestartClip(bool loopHit)
     {

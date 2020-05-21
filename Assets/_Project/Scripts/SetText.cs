@@ -19,7 +19,7 @@ public class SetText : MonoBehaviour
 
     public void IntToText(float val)
     {
-        int intVal = (int)val - 1;
+        int intVal = (int)val;
         if(intVal  < _IntToStringMappings.Length)
         {
             _TextBox.text = _IntToStringMappings[intVal];

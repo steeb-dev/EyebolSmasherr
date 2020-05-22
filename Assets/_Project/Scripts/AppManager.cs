@@ -114,7 +114,7 @@ public class AppManager : MonoBehaviour
     {
 
         if (_ClipEditorUI._TargetClipPad != null)
-        { if (ccNumber >= 8 && ccNumber < 20)
+        { if (ccNumber >= 8 && ccNumber < 22)
             {
                 float alpha, H, S, V;
                 int controlIndex = ccNumber - 8;
@@ -180,6 +180,26 @@ public class AppManager : MonoBehaviour
                     //Vid End Point;
                     case 9:
                         _ClipEditorUI._TargetClipPad._ClipData._VideoEndMs = Mathf.Lerp(_ClipEditorUI._TargetClipPad._ClipData._VideoStartMs + 1, _ClipEditorUI._TargetClipPad._ClipData._VideoLengthMs, ccValue);
+                        _ClipEditorUI.Refresh();
+                        break;
+                    //Vid XPos;
+                    case 10:
+                        _ClipEditorUI._TargetClipPad._ClipData._XPos= Mathf.Lerp(-3, 3, ccValue);
+                        _ClipEditorUI.Refresh();
+                        break;
+                    //Vid YPos;
+                    case 11:
+                        _ClipEditorUI._TargetClipPad._ClipData._YPos = Mathf.Lerp(-3, 3, ccValue);
+                        _ClipEditorUI.Refresh();
+                        break;  
+                    //Vid Width;
+                    case 12:
+                        _ClipEditorUI._TargetClipPad._ClipData._Width= Mathf.Lerp(0, 3, ccValue);
+                        _ClipEditorUI.Refresh();
+                        break;
+                    //Vid Height;
+                    case 13:
+                        _ClipEditorUI._TargetClipPad._ClipData._Height = Mathf.Lerp(0, 3, ccValue);
                         _ClipEditorUI.Refresh();
                         break;
                 }

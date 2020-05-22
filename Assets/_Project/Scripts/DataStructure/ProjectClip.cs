@@ -17,6 +17,11 @@ public class ProjectClip
     public float _LumaKey;
     public float _LumaBlend;
     public bool _InvertLuma;
+    public float _XPos;
+    public float _YPos;
+    public float _Width;
+    public float _Height;
+
 
     public string FileName
     {

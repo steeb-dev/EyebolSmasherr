@@ -23,6 +23,13 @@ public class ClipEditorUI : MonoBehaviour
     public Slider _LumaKeySlider;
     public Slider _LumaBlendSlider;
     public Slider _ColorMaskSlider;
+
+
+    public Slider _XPosSlider;
+    public Slider _YPosSlider;
+    public Slider _WidthSlider;
+    public Slider _HeightSlider;
+
     public Toggle _InvertLumaToggle;
 
     bool _IgnoreUpdateEvent = false;
@@ -63,6 +70,11 @@ public class ClipEditorUI : MonoBehaviour
         _LumaBlendSlider.value = _TargetClipPad._ClipData._LumaBlend;
         _LumaKeySlider.value = _TargetClipPad._ClipData._LumaKey;
         _InvertLumaToggle.isOn = _TargetClipPad._ClipData._InvertLuma;
+
+        _XPosSlider.value = _TargetClipPad._ClipData._XPos;
+        _YPosSlider.value = _TargetClipPad._ClipData._YPos;
+        _WidthSlider.value = _TargetClipPad._ClipData._Width;
+        _HeightSlider.value = _TargetClipPad._ClipData._Height;
 
         RefreshModeToggleGroup();
         _IgnoreUpdateEvent = false;
@@ -129,6 +141,30 @@ public class ClipEditorUI : MonoBehaviour
     {
         if (_TargetClipPad != null && !_IgnoreUpdateEvent)
             _TargetClipPad._ClipData._LumaBlend = blendVal;
+    }
+
+    public void UpdateXPos(float xPos)
+    {
+        if (_TargetClipPad != null && !_IgnoreUpdateEvent)
+            _TargetClipPad._ClipData._XPos = xPos;
+    }
+
+    public void UpdateYPos(float yPos)
+    {
+        if (_TargetClipPad != null && !_IgnoreUpdateEvent)
+            _TargetClipPad._ClipData._YPos = yPos;
+    }
+
+    public void UpdateWidth(float width)
+    {
+        if (_TargetClipPad != null && !_IgnoreUpdateEvent)
+            _TargetClipPad._ClipData._Width = width;
+    }
+
+    public void UpdateHeight(float height)
+    {
+        if (_TargetClipPad != null && !_IgnoreUpdateEvent)
+            _TargetClipPad._ClipData._Height = height;
     }
 
     public void ToggleInvertLuma()

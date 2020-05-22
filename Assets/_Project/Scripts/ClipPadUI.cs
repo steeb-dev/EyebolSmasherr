@@ -93,6 +93,10 @@ public class ClipPadUI : MonoBehaviour
         _ClipData._ColorMask = 15;
         _ClipData._LumaKey = 0;
         _ClipData._LumaBlend = 1;
+        _ClipData._Width = 1;
+        _ClipData._Height= 1;
+        _ClipData._XPos= 0;
+        _ClipData._YPos = 0;
         _ClipData._InvertLuma = false;
         _State = ClipPadState.Loaded;
         RefreshUI();

@@ -21,6 +21,10 @@ public class VideoPlayerController : MonoBehaviour
     float _CurrentLumaKey;
     float _CurrentLumaBlend;
     bool _CurrentInvertLuma;
+    float _CurrentXPos;
+    float _CurrentYPos;
+    float _CurrentWidth;
+    float _CurrentHeight;
 
     private void Start()
     {
@@ -140,6 +144,27 @@ public class VideoPlayerController : MonoBehaviour
         {
             UpdateInvertLuma();
         }
+
+        if (_CurrentXPos != _CurrentClipPad._ClipData._XPos)
+        {
+            UpdateXPos();
+        }
+
+        if (_CurrentYPos != _CurrentClipPad._ClipData._YPos)
+        {
+            UpdateYPos();
+        }
+
+        if (_CurrentWidth != _CurrentClipPad._ClipData._Width)
+        {
+            UpdateWidth();
+        }
+
+        if (_CurrentHeight != _CurrentClipPad._ClipData._Height)
+        {
+            UpdateHeight();
+        }
+
     }
 
     void HandleClipLoopMode()
@@ -201,6 +226,48 @@ public class VideoPlayerController : MonoBehaviour
             ugui.color = _CurrentColor;
         }
     }
+    public void UpdateXPos()
+    {
+        _CurrentXPos = _CurrentClipPad._ClipData._XPos;
+        foreach (DisplayUGUI ugui in VideoProjections)
+        {
+            Rect rect = ugui.uvRect;
+            rect.x = _CurrentXPos;
+            ugui.uvRect = rect; 
+        }
+    }
+    public void UpdateYPos()
+    {
+        _CurrentYPos = _CurrentClipPad._ClipData._YPos;
+        foreach (DisplayUGUI ugui in VideoProjections)
+        {
+            Rect rect = ugui.uvRect;
+            rect.y = _CurrentYPos;
+            ugui.uvRect = rect;
+        }
+    }
+
+    public void UpdateWidth()
+    {
+        _CurrentWidth = _CurrentClipPad._ClipData._Width;
+        foreach (DisplayUGUI ugui in VideoProjections)
+        {
+            Rect rect = ugui.uvRect;
+            rect.width = _CurrentWidth;
+            ugui.uvRect = rect;
+        }
+    }
+    public void UpdateHeight()
+    {
+        _CurrentHeight = _CurrentClipPad._ClipData._Height;
+        foreach (DisplayUGUI ugui in VideoProjections)
+        {
+            Rect rect = ugui.uvRect;
+            rect.height = _CurrentHeight;
+            ugui.uvRect = rect;
+        }
+    }
+
 
     public void UpdateColorMask()
     {

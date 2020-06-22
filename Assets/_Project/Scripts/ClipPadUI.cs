@@ -85,19 +85,8 @@ public class ClipPadUI : MonoBehaviour
 
         //If we're previewing, not loading from serialised, initialise the clipdata for first run
         _ClipData._VideoLengthMs = _Manager._PreviewPlayer.Info.GetDurationMs();
-        _ClipData._VideoStartMs = 0f;
-        _ClipData._VideoEndMs = _ClipData._VideoLengthMs -1;
-        _ClipData._PlaybackType = ClipPlaybackType.Loop;
-        _ClipData._ClipPlaybackSpeed = 1.0f;
-        _ClipData._TintColor = Color.white;
-        _ClipData._ColorMask = 15;
-        _ClipData._LumaKey = 0;
-        _ClipData._LumaBlend = 1;
-        _ClipData._Width = 1;
-        _ClipData._Height= 1;
-        _ClipData._XPos= 0;
-        _ClipData._YPos = 0;
-        _ClipData._InvertLuma = false;
+        _ClipData.InitSettings();
+
         _State = ClipPadState.Loaded;
         RefreshUI();
     }

@@ -30,6 +30,24 @@ public class ProjectClip
             return System.IO.Path.GetFileName(_VideoPath);
         }
     }
+
+    public void InitSettings()
+    {
+        _VideoStartMs = 0f;
+        _VideoEndMs = _VideoLengthMs - 1;
+        _PlaybackType = ClipPlaybackType.Loop;
+        _ClipPlaybackSpeed = 1.0f;
+        _TintColor = Color.white;
+        _ColorMask = 15;
+        _LumaKey = 0;
+        _LumaBlend = 1;
+        _Width = 1;
+        _Height = 1;
+        _XPos = 0;
+        _YPos = 0;
+        _InvertLuma = false;
+    }
+
 }
 
 public enum ClipPlaybackType

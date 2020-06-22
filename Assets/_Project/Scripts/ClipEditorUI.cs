@@ -38,7 +38,7 @@ public class ClipEditorUI : MonoBehaviour
 
     private void Update()
     {
-        if(_AppManager == null)
+        if (_AppManager == null)
         {
             _AppManager = FindObjectOfType<AppManager>();
         }
@@ -56,6 +56,12 @@ public class ClipEditorUI : MonoBehaviour
     public void ChangeFile()
     {
         _TargetClipPad.LoadFileDialog();
+    }
+
+    public void ResetSettings()
+    {
+        _TargetClipPad._ClipData.InitSettings();
+        Refresh();
     }
 
     public void Refresh()
